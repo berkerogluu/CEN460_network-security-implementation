@@ -1,8 +1,9 @@
+import java.awt.*;
+
 public class Core {
 
     private FrameView mFrameView;
     private ChatView mChatView;
-    private SettingsView mSettingsView;
 
 
     public Core() {
@@ -10,9 +11,12 @@ public class Core {
         // Initialization
         mFrameView = new FrameView();
         mChatView = new ChatView();
-        mSettingsView = new SettingsView();
 
-        // Setting up core
+        // Setting up ChatView
+
+        // Setting up FrameView
+        mFrameView.add(mChatView.getPanel(), BorderLayout.CENTER);
+        mFrameView.setVisible(true);
 
     }
 

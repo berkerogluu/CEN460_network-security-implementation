@@ -8,8 +8,21 @@ public class ChatView {
     private JTextArea mChatArea;
     public ChatView(){
         mPanel = new JPanel();
-        mMsgTxt = new JTextField();
-        mChatArea = new JTextArea();
+        mChatArea = new JTextArea(20,45);
+        mMsgTxt = new JTextField("", 45);
+
+        // mChatArea
+        mChatArea.setEditable(false);
+
+
+        //
+
+
+        // Panel
+        mPanel.setBackground(Color.GRAY);
+        mPanel.add(mChatArea);
+        mPanel.add(mMsgTxt);
+
     }
 
     public JPanel getPanel(){
