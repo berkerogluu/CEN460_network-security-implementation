@@ -1,10 +1,9 @@
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 
-public class ClientFrame extends JFrame {
+public class FrameView extends JFrame {
 
-    public ClientFrame(){
+    public FrameView(){
         this.setTitle("Chat App - AES with CBC and ECB");
         this.setLayout(new BorderLayout());
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
