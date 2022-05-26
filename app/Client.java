@@ -1,5 +1,7 @@
 public class Client {
     public static void main (String[] args){
-        Core core = new Core();
+        new Core();
+        Controller controller = new Controller();
+        controller.init();
     }
 }

@@ -12,9 +12,7 @@ public class Core {
         mFrameView = new FrameView();
         mChatView = new ChatView();
 
-        // Setting up ChatView
-
-        // Setting up FrameView
+        // Setting up
         mFrameView.add(mChatView.getPanel(), BorderLayout.CENTER);
         mFrameView.setVisible(true);
 
