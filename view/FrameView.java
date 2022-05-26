@@ -7,7 +7,7 @@ public class FrameView extends JFrame {
         this.setTitle("Chat App - AES with CBC and ECB");
         this.setLayout(new BorderLayout());
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setSize(new Dimension(500,425));
+        this.setSize(new Dimension(500,450));
         this.setLocationRelativeTo(null);
     }
 

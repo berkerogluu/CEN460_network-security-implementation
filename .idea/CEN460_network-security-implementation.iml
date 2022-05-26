@@ -12,6 +12,8 @@
       <sourceFolder url="file://$MODULE_DIR$/controller" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/modules" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/view" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/constants" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/model" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

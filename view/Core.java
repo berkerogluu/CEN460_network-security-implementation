@@ -2,9 +2,8 @@ import java.awt.*;
 
 public class Core {
 
-    private FrameView mFrameView;
-    private ChatView mChatView;
-
+    public FrameView mFrameView;
+    public ChatView mChatView;
 
     public Core() {
 

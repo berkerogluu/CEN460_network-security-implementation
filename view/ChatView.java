@@ -24,6 +24,8 @@ public class ChatView {
 
         // Encryption Settings
         mCipherType = new JLabel("Selected Cipher-> ECB");
+        mCipherType.setForeground(Color.BLACK);
+        mCipherType.setPreferredSize(new Dimension(250,20));
         mECBSetBtn = new JButton("Cipher: ECB");
         mCBCSetBtn = new JButton("Cipher: CBC");
 
@@ -59,6 +61,10 @@ public class ChatView {
 
     public JButton getCBCSetBtn(){
         return mCBCSetBtn;
+    }
+
+    public JLabel getLblCipherType(){
+        return mCipherType;
     }
 
 
