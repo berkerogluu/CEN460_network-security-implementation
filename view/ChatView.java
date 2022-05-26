@@ -11,6 +11,7 @@ public class ChatView {
     private JLabel mCipherType;
     private JButton mECBSetBtn;
     private JButton mCBCSetBtn;
+    private JTextField mSecretKey;
     public ChatView() {
         mPanel = new JPanel();
         mChatArea = new JTextArea(20,45);
@@ -20,7 +21,6 @@ public class ChatView {
 
         // Chat Area
         mChatArea.setEditable(false);
-        mChatArea.append(new Date() + ": Chat APP");
 
         // Encryption Settings
         mCipherType = new JLabel("Selected Cipher-> ECB");
@@ -28,6 +28,7 @@ public class ChatView {
         mCipherType.setPreferredSize(new Dimension(250,20));
         mECBSetBtn = new JButton("Cipher: ECB");
         mCBCSetBtn = new JButton("Cipher: CBC");
+        mSecretKey = new JTextField("Enter Secret Key..");
 
         // Panel
         mPanel.setBackground(Color.GRAY);
@@ -37,6 +38,7 @@ public class ChatView {
         mPanel.add(mCipherType);
         mPanel.add(mECBSetBtn);
         mPanel.add(mCBCSetBtn);
+        mPanel.add(mSecretKey);
     }
 
     public JPanel getPanel(){
@@ -65,6 +67,10 @@ public class ChatView {
 
     public JLabel getLblCipherType(){
         return mCipherType;
+    }
+
+    public JTextField getSecretKey(){
+        return mSecretKey;
     }
 
 
