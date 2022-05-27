@@ -28,7 +28,7 @@ public class ChatView {
         mCipherType.setPreferredSize(new Dimension(250,20));
         mECBSetBtn = new JButton("Cipher: ECB");
         mCBCSetBtn = new JButton("Cipher: CBC");
-        mSecretKey = new JTextField("Enter Secret Key..");
+        mSecretKey = new JTextField("aaaabbbbccccdddd");
 
         // Panel
         mPanel.setBackground(Color.GRAY);

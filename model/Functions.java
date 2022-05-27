@@ -1,56 +1,78 @@
 import javax.crypto.Cipher;
+import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
+import java.io.DataOutputStream;
+import java.math.BigInteger;
+import java.net.Socket;
 import java.security.MessageDigest;
 import java.util.Arrays;
 import java.util.Base64;
 
 public class Functions {
 
-    private SecretKeySpec secretKey;
-    private byte[] key;
-
     public Functions(){
 
     }
 
-    private void prepareKey(String k){
-        MessageDigest sha = null;
+    public byte[] hashPassword(String pwd){
+        String hashedText = "";
         try {
-            key = k.getBytes("UTF-8");
-            sha = MessageDigest.getInstance("SHA-1");
-            key = sha.digest(key);
-            key = Arrays.copyOf(key, 16);
-            secretKey = new SecretKeySpec(key, "AES");
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] messageDigest = md.digest(pwd.getBytes());
+            BigInteger no = new BigInteger(1, messageDigest);
+            hashedText = no.toString(16);
+            while (hashedText.length() < 32) {
+                hashedText = "0" + hashedText;
+            }
+
         } catch (Exception e) {
-            e.printStackTrace();
+            System.err.println(e.toString());
         }
+
+        return hashedText.getBytes();
     }
 
-    public String encrypt(String msg, String k){
+    public String encrypt(byte[] data, byte[] pwd){
+        byte[] encryptedData = null;
+
         try{
-            prepareKey(k);
-            Cipher cipher = Cipher.getInstance(Constants.SELECTED_CIPHER);
-            cipher.init(Cipher.ENCRYPT_MODE, secretKey);
-            return Base64.getEncoder().encodeToString(cipher.doFinal(msg.getBytes("UTF-8")));
-        }catch (Exception e){
-            e.printStackTrace();
+            Cipher mCipher = Cipher.getInstance(Constants.SELECTED_CIPHER);
+            SecretKey mKey = new SecretKeySpec(pwd, "AES");
+            mCipher.init(Cipher.ENCRYPT_MODE, mKey);
+            encryptedData = mCipher.doFinal(data);
+            encryptedData = Base64.getEncoder().encode(encryptedData);
+        }catch(Exception e){
+            System.err.println(e.toString());
         }
-        return null;
+
+        return new String(encryptedData);
     }
 
-    public String decrypt(String msg, String k){
+    public String decrypt(byte[] data, byte[] pwd){
+        byte[] decryptedData = null;
+
         try{
-            prepareKey(k);
-            Cipher cipher = Cipher.getInstance(Constants.SELECTED_CIPHER);
-            cipher.init(Cipher.DECRYPT_MODE, secretKey);
-            return new String(cipher.doFinal(Base64.getDecoder().decode(msg)));
-        }catch (Exception e){
-            e.printStackTrace();
+            Cipher mCipher = Cipher.getInstance(Constants.SELECTED_CIPHER);
+            SecretKey mKey = new SecretKeySpec(pwd, "AES");
+            mCipher.init(Cipher.DECRYPT_MODE, mKey);
+            decryptedData = mCipher.doFinal(data);
+        }catch(Exception e){
+            System.out.println(e.toString());
         }
-        return null;
+        return new String(decryptedData);
     }
 
     public void sendMessage(String msg){
+        Constants.wait = true;
+        try{
+            Socket mSocket = new Socket("localhost", Constants.SERVER_SOCKET);
+            DataOutputStream outputStream = new DataOutputStream(mSocket.getOutputStream());
+            outputStream.writeUTF(msg);
+            outputStream.close();
+            mSocket.close();
 
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }
